@@ -1,0 +1,109 @@
+"use client";
+
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import Link from "next/link";
+
+const Login: React.FC = () => {
+    const { t } = useTranslation();
+
+    const [form, setForm] = useState({
+        fullName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        acceptTerms: false,
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value, type, checked } = e.target;
+        setForm((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value,
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log(form);
+        // Add validation or API logic here
+    };
+
+    return (
+        <div className="pt-20 px-4 min-h-screen bg-gray-50">
+            <div className="max-w-3xl mx-auto bg-white pt-10 pb-20 px-6 md:px-12 rounded-2xl shadow">
+                <h1 className="text-center text-2xl lg:text-5xl font-bold text-gray-800">
+                    {t("Login")}
+                </h1>
+
+                <form onSubmit={handleSubmit} className="mt-12 space-y-8">
+
+
+                    {/* Email */}
+                    <div>
+                        <Label className=" formTextColor lg:text-xl font-extralight " htmlFor="email">{t("Email")}</Label>
+                        <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            className="mt-3 "
+                        />
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <Label className=" formTextColor lg:text-xl font-extralight " htmlFor="password">{t("Password")}</Label>
+                        <Input
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={form.password}
+                            onChange={handleChange}
+                            className="mt-3 "
+                        />
+                    </div>
+
+                    <div className="  " >
+                        <Link className=" flex justify-end font-semibold lg:text-2xl text-xl formTextColor  "  href={"/"}>Forgot your password?</Link>
+                    </div>
+
+
+
+
+
+                    {/* Submit Button */}
+                    <Button type="submit" className="w-full py-6 cursor-pointer  lg:text-2xl font-semibold text-xl ">
+                        {t("Log In")}
+                    </Button>
+                </form>
+                {/* social registration */}
+                <div className=" my-6 " >
+                    <div className=" flex flex-row items-center gap-8 " >
+                        <div className=" flex-1 border border-[#2C3E504D]   " /> <span className=" text-xl " > { t("or") } </span>  <div className=" flex-1 border border-[#2C3E504D]   " />
+                    </div>
+                </div>
+                <div>
+                    <Button
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        <Image src={"/image/registration/google.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{t("Continue with Google")}
+                    </Button>
+                    <Button
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] mt-8 w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        <Image src={"/image/registration/facebook.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{
+                            t("Continue with Facebook")
+                        }
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
