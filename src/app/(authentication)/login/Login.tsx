@@ -37,13 +37,13 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="pt-20 px-4  ">
-            <div className="max-w-3xl mx-auto bg-white pt-10 pb-20 px-6 md:px-12 rounded-2xl ">
-                <h1 className="text-center text-2xl lg:text-5xl font-bold text-gray-800">
+        <div className="lg:pt-20 pt-8 px-4  ">
+            <div className="max-w-3xl mx-auto bg-white pt-6 lg:pt-10 pb-8 lg:pb-20 px-6 md:px-12 rounded-2xl ">
+                <h1 className="text-center text-2xl lg:text-5xl font-bold formTextColor">
                     {t("Login")}
                 </h1>
 
-                <form onSubmit={handleSubmit} className="mt-12 space-y-8">
+                <form onSubmit={handleSubmit} className="lg:mt-12 mt-6 space-y-4 lg:space-y-8">
                     {/* Email */}
                     <div>
                         <Label
@@ -83,7 +83,7 @@ const Login: React.FC = () => {
                     <div>
                         <Link
                             href="/email-verify"
-                            className="flex justify-end font-semibold text-xl lg:text-2xl formTextColor"
+                            className="flex justify-end font-semibold text-[15px] lg:text-2xl formTextColor"
                         >
                             {
                                 t("Forgot your password?")
@@ -94,7 +94,7 @@ const Login: React.FC = () => {
                     {/* Submit Button */}
                     <Button
                         type="submit"
-                        className="w-full py-6 cursor-pointer text-xl lg:text-2xl font-semibold"
+                        className="w-full py-6 cursor-pointer text-[15px] lg:text-2xl font-semibold"
                     >
                         {t("Log In")}
                     </Button>
@@ -111,7 +111,7 @@ const Login: React.FC = () => {
 
                 {/* Social buttons */}
                 <div>
-                    <Button className="bg-white border border-[#2C3E50] w-full text-xl lg:text-2xl py-6 formTextColor font-semibold flex items-center gap-x-2.5">
+                    <Button className="bg-white border border-[#2C3E50] w-full text-[15px] lg:text-2xl py-6 formTextColor font-semibold flex items-center gap-x-2.5">
                         <Image
                             src="/image/registration/google.png"
                             width={200}
@@ -122,7 +122,7 @@ const Login: React.FC = () => {
                         {t("Continue with Google")}
                     </Button>
 
-                    <Button className="bg-white border border-[#2C3E50] mt-8 w-full text-xl lg:text-2xl formTextColor py-6 font-semibold flex items-center gap-x-2.5">
+                    <Button className="bg-white border border-[#2C3E50] mt-8 w-full text-[15px] lg:text-2xl formTextColor py-6 font-semibold flex items-center gap-x-2.5">
                         <Image
                             src="/image/registration/facebook.png"
                             width={200}
@@ -134,7 +134,7 @@ const Login: React.FC = () => {
                     </Button>
                 </div>
                 <div>
-                    <p className=" formTextColor text-2xl font-extralight mt-14 text-center  " >Don’t have an account? <Link className=" font-bold " href={"/registration"}>Register</Link> </p>
+                    <p className=" formTextColor text-[15px] lg:text-2xl font-extralight mt-7 lg:mt-14 text-center  " >Don’t have an account? <Link className=" font-bold " href={"/registration"}>Register</Link> </p>
                 </div>
             </div>
         </div>
