@@ -120,17 +120,19 @@ const Registration: React.FC = () => {
                 {/* social registration */}
                 <div className=" my-6 " >
                     <div className=" flex flex-row items-center gap-8 " >
-                        <div className=" flex-1 border border-[#2C3E504D]   " /> <span className=" text-xl " >Or</span>  <div className=" flex-1 border border-[#2C3E504D]   " />
+                        <div className=" flex-1 border border-[#2C3E504D]   " /> <span className=" text-xl " >{
+                            t("or")
+                        }</span>  <div className=" flex-1 border border-[#2C3E504D]   " />
                     </div>
                 </div>
                 <div>
                     <Button
-                        className=" bg-white border border-[#2C3E50] w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
-                        <Image src={"/image/registration/google.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />Continue with Google
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        <Image src={"/image/registration/google.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{t("Continue with Google")}
                     </Button>
                     <Button
-                        className=" bg-white border border-[#2C3E50] mt-8 w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
-                        <Image src={"/image/registration/facebook.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />Continue with Facebook
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] mt-8 w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        <Image src={"/image/registration/facebook.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{ t("Continue with Facebook") }
                     </Button>
                 </div>
             </div>
