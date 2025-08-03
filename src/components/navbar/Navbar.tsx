@@ -12,24 +12,24 @@ const Navbar = () => {
 
     const toggleSidebar = () => setIsOpen(!isOpen);
     useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)'); // lg breakpoint
+        const mediaQuery = window.matchMedia('(min-width: 1024px)'); // lg breakpoint
 
-    const handleResize = () => {
-        if (mediaQuery.matches) {
-            setIsOpen(false); // Close sidebar on desktop
-        }
-    };
+        const handleResize = () => {
+            if (mediaQuery.matches) {
+                setIsOpen(false); // Close sidebar on desktop
+            }
+        };
 
-    // Initial check
-    handleResize();
+        // Initial check
+        handleResize();
 
-    // Listen for changes
-    mediaQuery.addEventListener('change', handleResize);
+        // Listen for changes
+        mediaQuery.addEventListener('change', handleResize);
 
-    return () => {
-        mediaQuery.removeEventListener('change', handleResize);
-    };
-}, []);
+        return () => {
+            mediaQuery.removeEventListener('change', handleResize);
+        };
+    }, []);
 
     return (
         <>
@@ -58,13 +58,18 @@ const Navbar = () => {
                         <Link href="/about-us">{t('about-us')}</Link>
                         <Link href="/contact-us">{t('contact-us')}</Link>
                         <Link href="/saved-clinic">{t('saved-clinic')}</Link>
-                        <LanguageSwitcher />
+                        <LanguageSwitcher   />
                     </nav>
 
                     {/* Auth & Menu */}
                     <div className="flex items-center gap-4">
                         <div className="hidden lg:block">
-                            <h1 className="font-semibold textColor">Authentication</h1>
+
+                            <Link className='font-semibold textColor' href={"/registration"}>
+                                {
+                                    t("Registration")
+                                }
+                            </Link>
                         </div>
 
                         {/* Hamburger Icon for Mobile */}
@@ -84,7 +89,7 @@ const Navbar = () => {
             >
                 <div className="flex justify-between items-center p-4 border-b">
                     <h2 className="text-xl font-bold">Menu</h2>
-                    <button className=' cursor-pointer '  onClick={toggleSidebar} aria-label="Close menu">
+                    <button className=' cursor-pointer ' onClick={toggleSidebar} aria-label="Close menu">
                         <AiOutlineClose size={24} />
                     </button>
                 </div>
@@ -105,15 +110,19 @@ const Navbar = () => {
                     <Link href="/about-us" onClick={toggleSidebar}>
                         {t('about-us')}
                     </Link>
-                    <Link href="/contact-us" onClick={toggleSidebar}>
+                    <Link  href="/contact-us" onClick={toggleSidebar}>
                         {t('contact-us')}
                     </Link>
-                    <Link href="/saved-clinic" onClick={toggleSidebar}>
+                    <Link  href="/saved-clinic" onClick={toggleSidebar}>
                         {t('saved-clinic')}
                     </Link>
-                    <LanguageSwitcher />
+                    <LanguageSwitcher toggleSidebar = {toggleSidebar} />
                     <hr />
-                    <h1 className="font-semibold">Authentication</h1>
+                    <Link onClick={toggleSidebar} className='font-semibold textColor' href={"/registration"}>
+                        {
+                            t("Registration")
+                        }
+                    </Link>
                 </nav>
             </div>
 
