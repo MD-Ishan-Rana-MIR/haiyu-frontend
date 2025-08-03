@@ -8,6 +8,9 @@ import arabic from "../language-json/arabic/arabic.json";
 import regEng from "../language-json/registration/regEng.json"
 import regArabic from "../language-json/registration/regArabic.json";
 import regChines from "../language-json/registration/regChines.json";
+import footerEnglish from "../language-json/footer/english.json"
+import footerChines from "../language-json/footer/chines.json"
+import footerArabic from "../language-json/footer/arabic.json"
 
 
 i18n
@@ -15,9 +18,9 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: { ...en, ...regEng } },
-      zh: { translation: { ...zh, ...regChines } },
-      ar: { translation: { ...arabic, ...regArabic } },
+      en: { translation: { ...en, ...regEng,...footerEnglish } },
+      zh: { translation: { ...zh, ...regChines,...footerChines } },
+      ar: { translation: { ...arabic, ...regArabic,...footerArabic } },
     },
     fallbackLng: 'en',
     lng: 'en', // optional default language

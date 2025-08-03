@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header className="w-full bg-white shadow-sm z-50 relative">
+            <header className="w-full bg-[#f5f7fa] z-50 relative">
                 <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
@@ -65,9 +65,9 @@ const Navbar = () => {
                     <div className="flex items-center gap-4">
                         <div className="hidden lg:block">
 
-                            <Link className='font-semibold textColor' href={"/registration"}>
+                            <Link className='font-semibold textColor' href={"/login"}>
                                 {
-                                    t("Registration")
+                                    t("Login")
                                 }
                             </Link>
                         </div>
@@ -120,7 +120,7 @@ const Navbar = () => {
                     <hr />
                     <Link onClick={toggleSidebar} className='font-semibold textColor' href={"/registration"}>
                         {
-                            t("Registration")
+                            t("login")
                         }
                     </Link>
                 </nav>

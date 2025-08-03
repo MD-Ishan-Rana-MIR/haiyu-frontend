@@ -34,13 +34,13 @@ const Registration: React.FC = () => {
     };
 
     return (
-        <div className="pt-20 px-4 min-h-screen bg-gray-50">
-            <div className="max-w-3xl mx-auto bg-white pt-10 pb-20 px-6 md:px-12 rounded-2xl shadow">
+        <div className="lg:pt-20 pt-10 px-4 ">
+            <div className="max-w-3xl mx-auto bg-white pt-6 lg:pt-10 pb-8 lg:pb-20 px-6 lg:px-12 rounded-2xl shadow">
                 <h1 className="text-center text-2xl lg:text-5xl font-bold text-gray-800">
                     {t("Registration")}
                 </h1>
 
-                <form onSubmit={handleSubmit} className="mt-12 space-y-8">
+                <form onSubmit={handleSubmit} className="lg:mt-12 mt-6 space-y-4 lg:space-y-8">
                     {/* Full Name */}
                     <div>
                         <Label className=" formTextColor lg:text-xl font-extralight " htmlFor="fullName">{t("Full Name")}</Label>
@@ -104,7 +104,7 @@ const Registration: React.FC = () => {
                                 setForm((prev) => ({ ...prev, acceptTerms: checked }))
                             }
                         />
-                        <Label className=" formTextColor text-xl font-extralight " htmlFor="acceptTerms" >
+                        <Label className=" formTextColor lg:text-xl font-extralight " htmlFor="acceptTerms" >
                             {t("I accept the")}{" "}
                             <span className="underline cursor-pointer">
                                 {t("Terms and Conditions")}
@@ -113,7 +113,7 @@ const Registration: React.FC = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <Button type="submit" className="w-full py-6 cursor-pointer  lg:text-2xl font-semibold text-xl ">
+                    <Button type="submit" className="w-full py-6 cursor-pointer  lg:text-2xl font-semibold text-lg ">
                         {t("Register")}
                     </Button>
                 </form>
@@ -127,11 +127,11 @@ const Registration: React.FC = () => {
                 </div>
                 <div>
                     <Button
-                        className=" cursor-pointer  bg-white border border-[#2C3E50] w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] w-full formTextColor px-3 py-6 font-semibold formTextColor text-[15px] lg:text-2xl flex flex-row items-center gap-x-2.5    " >
                         <Image src={"/image/registration/google.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{t("Continue with Google")}
                     </Button>
                     <Button
-                        className=" cursor-pointer  bg-white border border-[#2C3E50] mt-8 w-full formTextColor px-3 py-6 font-semibold formTextColor text-xl lg:text-2xl flex flex-row items-center gap-x-2.5    " >
+                        className=" cursor-pointer  bg-white border border-[#2C3E50] mt-8 w-full formTextColor px-3 py-6 font-semibold formTextColor text-[15px] lg:text-2xl flex flex-row items-center gap-x-2.5    " >
                         <Image src={"/image/registration/facebook.png"} width={200} height={200} alt="google" className=" w-8 h-8 " />{ t("Continue with Facebook") }
                     </Button>
                 </div>

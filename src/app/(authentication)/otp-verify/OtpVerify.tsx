@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation'; // 'next/router' if using pages dir
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
@@ -8,70 +9,96 @@ const OTP_LENGTH = 6;
 
 const OtpVerify = () => {
     const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''));
-    // const { toast } = useToast();
+    const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
+
 
     const handleChange = (value: string, index: number) => {
         if (!/^\d*$/.test(value)) return;
-
         const newOtp = [...otp];
         newOtp[index] = value.slice(-1);
         setOtp(newOtp);
 
-        const nextInput = document.getElementById(`otp-${index + 1}`);
-        if (value && nextInput) nextInput.focus();
+        if (value && index < OTP_LENGTH - 1) {
+            inputsRef.current[index + 1]?.focus();
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+        if (e.key === 'Backspace' && !otp[index] && index > 0) {
+            inputsRef.current[index - 1]?.focus();
+        }
     };
 
     const handleVerify = () => {
         const code = otp.join('');
         if (code.length === OTP_LENGTH) {
-            // toast({ title: 'OTP Verified', description: `Entered OTP: ${code}` });
+            console.log('Verified OTP:', code);
+            router.push('/new-password');
         } else {
-            // toast({ title: 'Error', description: 'Please enter full OTP', variant: 'destructive' });
+            console.error('Incomplete OTP');
         }
     };
 
     const handleResend = () => {
-        // toast({ title: 'OTP Sent Again', description: 'A new OTP was sent to your email/phone.' });
+        console.log('OTP Resent');
     };
 
+    const router = useRouter()
+
     return (
-        <div className="flex  items-center justify-center  lg:pt-20 pt-14 px-4">
-            <div className="max-w-3xl mx-auto bg-white pt-10 pb-20 px-6 md:px-12 rounded-2xl ">
-                <h2 className="text-center text-2xl lg:text-5xl font-bold textColor  ">Verification Code</h2>
-                <p className=" lg:mt-20 mt-10 text-center formTextColor lg:text-xl text-[16px] lg:mb-[76px] mb-8 ">
-                    We sent a reset link to contact@dscode.com <br />
-                    enter 6 digit code that is mentioned in the email
+        <div className=' px-4 ' >
+            <div className="flex items-center justify-center  px-4 lg:pt-20 pt-10  ">
+            <div className="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-2xl ">
+                <h2 className="text-center text-3xl md:text-5xl font-bold formTextColor ">Verification Code</h2>
+
+                <p className="mt-6 md:mt-10 text-center formTextColor text-base md:text-lg mb-8">
+                    We sent a reset link to <span className="font-medium">contact@dscode.com</span><br />
+                    Enter the 6-digit code from your email.
                 </p>
 
-                <div className=" mb-8 lg:mb-16 flex justify-center  gap-x-4">
-                    {otp.map((digit, index) => (
-                        <Input
-                            key={index}
-                            id={`otp-${index}`}
-                            type="text"
-                            inputMode="numeric"
-                            maxLength={1}
-                            className="h-12 w-12 text-center text-lg font-medium"
-                            value={digit}
-                            onChange={(e) => handleChange(e.target.value, index)}
-                        />
-                    ))}
-                </div>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        handleVerify();
+                        router.push("/new-password")
 
-                <Button className="w-full px-5 py-6 text-[#F5F7FA] lg:text-2xl text-xl font-semibold cursor-pointer    " onClick={handleVerify}>Verify Code</Button>
+                    }}
+                >
+                    <div className="flex justify-center gap-3 mb-10">
+                        {otp.map((digit, index) => (
+                            <Input
+                                key={index}
+                                id={`otp-${index}`}
+                                type="text"
+                                inputMode="numeric"
+                                maxLength={1}
+                                value={digit}
+                                onChange={(e) => handleChange(e.target.value, index)}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
+                                ref={(el) => (inputsRef.current[index] = el)}
+                                autoFocus={index === 0}
+                                className="h-12 w-12 md:h-14 md:w-14 text-center text-xl formTextColor font-semibold border-gray-300"
+                            />
+                        ))}
+                    </div>
 
-                <div className=" mt-4 lg:mt-7 ">
-                    <p className=' text-center formTextColor text-xl lg:text-3xl   ' >
-                        Didn’t receive code?{' '}
-                        <button className=" font-bold " onClick={handleResend}>
+                    <Button type="submit" className="w-full   text-lg md:text-xl font-semibold">
+                        Verify Code
+                    </Button>
+                </form>
+
+                <div className="mt-6 text-center formTextColor">
+                    <p className=' textColor lg:text-3xl text-[15px] ' >
+                        Didn’t receive code?
+                        <button type="button" className="font-bold " onClick={handleResend}>
                             Resend OTP
                         </button>
                     </p>
                 </div>
             </div>
         </div>
+        </div>
     );
-}
-
+};
 
 export default OtpVerify;
