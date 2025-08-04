@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormData = {
     email: string;
@@ -17,9 +18,12 @@ const AdminLogin = () => {
         formState: { errors, isSubmitting },
     } = useForm<FormData>();
 
+    const router = useRouter()
+
     const onSubmit = (data: FormData) => {
         console.log("Form submitted:", data);
         // Login logic here (e.g., API call)
+        router.push("/dashboard")
     };
 
     return (
