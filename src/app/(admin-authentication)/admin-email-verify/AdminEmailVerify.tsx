@@ -3,10 +3,12 @@
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 type FormData = {
     email: string;
 };
+
 
 const AdminEmailVerify : React.FC = () => {
     const {
@@ -14,9 +16,11 @@ const AdminEmailVerify : React.FC = () => {
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm<FormData>();
+    const router = useRouter()
 
     const onSubmit = (data: FormData) => {
         console.log("Form submitted:", data);
+        router.push("/admin-otp-verify")
         // Login logic here (e.g., API call)
     };
 
