@@ -1,9 +1,12 @@
+import HomePage from '@/pages/HomePage'
 import React from 'react'
 
-const page = () => {
+const Page : React.FC = () => {
   return (
-    <div>Home page</div>
+    <div>
+      <HomePage></HomePage>
+    </div>
   )
 }
 
-export default page
+export default Page
